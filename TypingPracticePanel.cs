@@ -38,8 +38,6 @@ namespace _7typingAPP
             int buttonWidth = 150;
             int buttonHeight = 30;
             int buttonLeft = (this.ClientSize.Width - buttonWidth) / 2;
-            int startY = 100;
-            int buttonSpacing = 10;
 
             this.inputTextLabel.Location = new System.Drawing.Point(20, 25);
             this.inputTextLabel.Size = new System.Drawing.Size(560, 50);

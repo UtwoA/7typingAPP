@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _7typingAPP
 {
     public partial class MainForm : Form
     {
-
         private MainPanel mainPanel;
         private ModeSelectionPanel modeSelectionPanel;
         private TypingInstructionPanel typingInstructionPanel;
@@ -24,12 +18,14 @@ namespace _7typingAPP
         private SettingsPanel settingsPanel;
         Random random = new Random();
         int indexSymbol = 0;
+
         public MainForm()
         {
             InitializeComponent();
             CenterToScreen();
             startProgramm();
         }
+
         public void startProgramm()
         {
             this.mainPanel.Visible = true;
@@ -64,6 +60,7 @@ namespace _7typingAPP
             typingPracticePanel.backButtonToInstruction.Click += new EventHandler(BackButtonToInstruction_Click);
             typingPracticePanel.typingTextBox.TextChanged += new EventHandler(TypingTextBox_TextChanged);
         }
+
         // MAIN PANEL METHODS
         private void StartButton_Click(object sender, EventArgs e)
         {
@@ -110,7 +107,7 @@ namespace _7typingAPP
             string[] TextList = File.ReadAllLines("C:/folder/NumPad.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
-
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void TouchTypingModeButton_Click(object sender, EventArgs e)
@@ -155,8 +152,9 @@ namespace _7typingAPP
 
         }
 
-        private void NextButton_Click(object sender, EventArgs e) // INSTR > PRACTICE
+        private void NextButton_Click(object sender, EventArgs e)
         {
+            // Создаем экземпляр виртуальной клавиатуры
             virtualKeyboardPanel = new VirtualKeyboardPanel();
             this.typingInstructionPanel.Visible = false;
 
@@ -165,37 +163,46 @@ namespace _7typingAPP
             this.virtualKeyboardPanel.Visible = true;
             this.typingPracticePanel.Visible = true;
 
-            HighlightFirstChar();
+            typingPracticePanel.currentCharIndex = 0; // Сброс индекса символа перед началом
+
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
+            typingPracticePanel.typingTextBox.Clear(); // Сброс текста перед началом
         }
+
         private void backButtonToModeSelection(object sender, EventArgs e)
         {
             this.typingPracticePanel.Visible = false;
             this.modeSelectionPanel.Visible = true;
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
+
+            typingPracticePanel.typingTextBox.Clear(); // Сброс текста при возврате к выбору режима
         }
+
         // TYPING PRACTICE PANEL METHODS
         private void BackButtonToInstruction_Click(object sender, EventArgs e)
         {
             this.typingPracticePanel.Visible = false;
             this.typingInstructionPanel.Visible = true;
+            typingPracticePanel.typingTextBox.Clear(); // Сброс текста при возврате к инструкции
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
-        private void HighlightFirstChar()
+        private void HighlightFirstChar(string textToType)
         {
-            Console.WriteLine("key was colored");
-            string expectedText = typingPracticePanel.practiceText;
-
-            if (!string.IsNullOrEmpty(expectedText))
+            if (textToType.Length >= 0)
             {
-                char firstCharToType = char.ToLower(expectedText[0]);
+                char firstCharToType = char.ToLower(textToType[0]);
 
                 foreach (Control control in virtualKeyboardPanel.Controls)
                 {
                     if (control is Button button)
                     {
-                        char keyChar = char.ToLower(button.Text[0]); // Получаем символ клавиши (предполагаем, что текст кнопки - это один символ)
+                        char keyChar = char.ToLower(button.Text[0]);
                         if (keyChar == firstCharToType)
                         {
                             button.BackColor = Color.Yellow; // Подсвечиваем желтым первый символ
+                            Console.WriteLine("FIRST CHAR LIGHT");
+
                         }
                         else
                         {
@@ -205,7 +212,6 @@ namespace _7typingAPP
                 }
             }
         }
-
 
         // Метод для посимвольного сравнения введенного слова с inputTextLabel
         private void CompareUserInputWithExpectedText()
@@ -223,10 +229,11 @@ namespace _7typingAPP
                 }
                 else
                 {
-                    typingPracticePanel.currentCharIndex++;
+                    // Подсветить красным неверную букву и желтым следующую букву
                     UpdateVirtualKeyboardHighlighting(userInput, expectedText, true);
                 }
             }
+
             int accuracy = 12;
             int speed = 52;
             if (userInput.Length == expectedText.Length)
@@ -235,33 +242,40 @@ namespace _7typingAPP
                 this.typingPracticePanel.Visible = false;
                 this.modeSelectionPanel.Visible = true;
                 typingPracticePanel.typingTextBox.Clear();
+                typingPracticePanel.currentCharIndex = 0; // Сброс индекса символа
+                foreach (Control control in virtualKeyboardPanel.Controls)
+                {
+                    if (control is Button button)
+                    {
+                        button.BackColor = virtualKeyboardPanel.GetKeyColor(button.Text); // Восстанавливаем исходный цвет остальных клавиш
+                    }
+                }
+
             }
         }
 
         // Метод для обновления подсветки клавиш на виртуальной клавиатуре
         private void UpdateVirtualKeyboardHighlighting(string userInput, string textToType, bool isError = false)
         {
-            // Проверяем, что currentCharIndex не выходит за пределы строки textToType
             if (typingPracticePanel.currentCharIndex >= textToType.Length)
             {
                 return; // Выход из метода, если индекс выходит за пределы строки
             }
-            // Получаем следующую букву, которую пользователь должен ввести
+
             char nextCharToType = char.ToLower(textToType[typingPracticePanel.currentCharIndex]);
             char lastCharTyped = userInput.Length > 0 ? char.ToLower(userInput[userInput.Length - 1]) : '\0';
 
-            // Перебираем клавиши на виртуальной клавиатуре
             foreach (Control control in virtualKeyboardPanel.Controls)
             {
                 if (control is Button button)
                 {
-                    char keyChar = char.ToLower(button.Text[0]); // Получаем символ клавиши (предполагаем, что текст кнопки - это один символ)
+                    char keyChar = char.ToLower(button.Text[0]);
 
                     if (keyChar == lastCharTyped && isError)
                     {
                         button.BackColor = Color.Red; // Подсвечиваем красным, если ошибка
                     }
-                    else if (keyChar == nextCharToType && !isError)
+                    else if (keyChar == nextCharToType)
                     {
                         button.BackColor = Color.Yellow; // Подсвечиваем желтым следующую букву для ввода
                     }
@@ -271,6 +285,12 @@ namespace _7typingAPP
                     }
                 }
             }
+
+            // Подсвечиваем желтым первую букву, если это начальная загрузка текста
+            if (typingPracticePanel.currentCharIndex == 0 && !string.IsNullOrEmpty(textToType))
+            {
+                HighlightFirstChar(textToType);
+            }
         }
 
         // Обработчик события изменения текста в typingTextBox
@@ -278,6 +298,5 @@ namespace _7typingAPP
         {
             CompareUserInputWithExpectedText();
         }
-
     }
 }
