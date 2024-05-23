@@ -36,20 +36,20 @@ namespace _7typingAPP
             int buttonSpacing = 10;
 
             this.instructionLabel.Location = new Point(20, 20);
-            this.instructionLabel.Size = new System.Drawing.Size(100, 50);
+            this.instructionLabel.Size = new System.Drawing.Size(600, 90);
 
             this.nextButton.Text = "Далее";
             this.nextButton.Size = new Size(buttonWidth, buttonHeight);
-            this.nextButton.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4 * 3, this.ClientSize.Height - nextButton.Height * 2);
+            this.nextButton.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4 * 3, this.ClientSize.Height - nextButton.Height * 3 / 2);
 
             this.instructionPictureBox.Size = new Size(this.ClientSize.Width, this.ClientSize.Height / 3 * 2);
-            this.instructionPictureBox.Location = new Point(0, this.ClientSize.Height / 3 - nextButton.Height * 3);
+            this.instructionPictureBox.Location = new Point(0, this.ClientSize.Height / 5 * 2 - nextButton.Height * 3);
             this.instructionPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
             this.backButtonToModeSelection.Size = new Size(buttonWidth, buttonHeight);
             this.backButtonToModeSelection.Text = "НАЗАД";
-            this.backButtonToModeSelection.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4, this.ClientSize.Height - nextButton.Height * 2);
+            this.backButtonToModeSelection.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4, this.ClientSize.Height - nextButton.Height * 3 / 2);
 
             this.Controls.Add(this.instructionLabel);
             this.Controls.Add(this.nextButton);

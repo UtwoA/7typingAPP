@@ -4,6 +4,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
+using Microsoft.VisualBasic;
 
 namespace _7typingAPP
 {
@@ -18,6 +20,11 @@ namespace _7typingAPP
         private SettingsPanel settingsPanel;
         Random random = new Random();
         int indexSymbol = 0;
+
+        // Variables for tracking typing performance
+        private Stopwatch stopwatch;
+        private int correctChars;
+        private int incorrectChars;
 
         public MainForm()
         {
@@ -38,10 +45,7 @@ namespace _7typingAPP
 
             mainPanel.startButton.Click += new EventHandler(StartButton_Click);
             mainPanel.statisticsButton.Click += new EventHandler(StatisticsButton_Click);
-            mainPanel.settingsButton.Click += new EventHandler(SettingsButton_Click);
             mainPanel.exitButton.Click += new EventHandler(ExitButton_Click);
-
-            settingsPanel.saveSettingsButton.Click += new EventHandler(SaveSettingsButton_Click);
 
             statisticsPanel.closeStatisticsButton.Click += new EventHandler(CloseStatisticsButton_Click);
 
@@ -61,6 +65,7 @@ namespace _7typingAPP
             typingPracticePanel.typingTextBox.TextChanged += new EventHandler(TypingTextBox_TextChanged);
         }
 
+
         // MAIN PANEL METHODS
         private void StartButton_Click(object sender, EventArgs e)
         {
@@ -74,23 +79,9 @@ namespace _7typingAPP
             this.statisticsPanel.Visible = true;
         }
 
-        private void SettingsButton_Click(object sender, EventArgs e)
-        {
-            this.mainPanel.Visible = false;
-            this.settingsPanel.Visible = true;
-        }
-
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        // SETTINGS PANEL METHODS
-        private void SaveSettingsButton_Click(object sender, EventArgs e)
-        {
-            // Save settings logic
-            this.settingsPanel.Visible = false;
-            this.mainPanel.Visible = true;
         }
 
         // STATISTICS PANEL METHODS
@@ -103,7 +94,7 @@ namespace _7typingAPP
         // MODE SELECTION PANEL METHODS
         private void NumPadModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("NumPad Mode Instructions");
+            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры. Это идеальный выбор для тех, \nкто хочет улучшить свои навыки ввода чисел на цифровой клавиатуре. Этот режим поможет повысить точность \nи скорость работы с цифрами, что полезно для выполнения бухгалтерских задач, работы с таблицами и других действий, требующих ввода чисел.");
             string[] TextList = File.ReadAllLines("C:/folder/NumPad.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
@@ -112,27 +103,47 @@ namespace _7typingAPP
 
         private void TouchTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Touch Typing Mode Instructions");
+            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв, не имеющих смысла. \nОсновная цель данного режима — развить навыки слепой печати и улучшить координацию пальцев. Ввод бессмысленных буквенных комбинаций помогает пользователю сосредоточиться на механике печати, не отвлекаясь на смысл текста.");
+            string[] TextList = File.ReadAllLines("C:/folder/Touch Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanel.selectText(practiceTexts);
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void BlindTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Blind Typing Mode Instructions");
+            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст. Это может быть статья, \nрассказ или отрывок из книги. Цель этого режима — улучшить навыки слепой печати осмысленного текста, \nчто помогает развивать память пальцев и увеличивает общую скорость печати, а также улучшает навыки восприятия и ввода текста.");
+            string[] TextList = File.ReadAllLines("C:/folder/Blind Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanel.selectText(practiceTexts);
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void FastTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Fast Typing Mode Instructions");
+            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст. Тексты могут \nсодержать сложные слова, знаки препинания и цифры. Цель данного режима — максимально увеличить \nскорость nпечати при сохранении точности. Этот режим идеален для тех, кто хочет продвинуть свои навыки на новый уровень и научиться быстро и точно печатать сложные тексты.");
+            string[] TextList = File.ReadAllLines("C:/folder/Fast Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanel.selectText(practiceTexts);
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void TypingTestsModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Typing Tests Mode Instructions");
+            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тесты. Каждый тест имеет определенное время \nи сложность, по окончании которого пользователь получает оценку своих навыков. Это помогает объективно \nоценить свои возможности и прогресс в обучении, а также выявить слабые стороны, требующие доработки.");
+            string[] TextList = File.ReadAllLines("C:/folder/Typing Tests.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanel.selectText(practiceTexts);
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void FreeModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Free Mode Instructions");
+            StartTypingPractice("Free Mode\r\nВ этом режиме пользователь может загрузить свой файл с текстом, после чего вводить его. Это позволяет \nтренироваться на тех текстах, которые наиболее актуальны для пользователя. Можно загрузить любой текст: \nстатьи, рабочие документы, учебные материалы и другие. Такой режим предоставляет максимальную гибкость в обучении и позволяет адаптировать тренировки под индивидуальные нужды пользователя.");
+            string[] TextList = File.ReadAllLines("C:/folder/Free Mode.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanel.selectText(practiceTexts);
+            UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
         }
 
         private void BackButtonModeSelectionToMain_Click(object sender, EventArgs e)
@@ -149,7 +160,6 @@ namespace _7typingAPP
             this.typingInstructionPanel.Visible = true;
             typingInstructionPanel.instructionLabel.Text = instructions;
             typingInstructionPanel.instructionPictureBox.Image = Image.FromFile("C:/folder/picture.jpg");
-
         }
 
         private void NextButton_Click(object sender, EventArgs e)
@@ -167,6 +177,11 @@ namespace _7typingAPP
 
             UpdateVirtualKeyboardHighlighting("", typingPracticePanel.practiceText);
             typingPracticePanel.typingTextBox.Clear(); // Сброс текста перед началом
+
+            // Start timing and reset counters
+            stopwatch = Stopwatch.StartNew();
+            correctChars = 0;
+            incorrectChars = 0;
         }
 
         private void backButtonToModeSelection(object sender, EventArgs e)
@@ -201,8 +216,6 @@ namespace _7typingAPP
                         if (keyChar == firstCharToType)
                         {
                             button.BackColor = Color.Yellow; // Подсвечиваем желтым первый символ
-                            Console.WriteLine("FIRST CHAR LIGHT");
-
                         }
                         else
                         {
@@ -225,20 +238,26 @@ namespace _7typingAPP
                 if (userInput.Length > 0 && char.ToLower(userInput[userInput.Length - 1]) == expectedChar)
                 {
                     typingPracticePanel.currentCharIndex++;
+                    correctChars++;
                     UpdateVirtualKeyboardHighlighting(userInput, expectedText);
                 }
                 else
                 {
+                    incorrectChars++;
                     // Подсветить красным неверную букву и желтым следующую букву
                     UpdateVirtualKeyboardHighlighting(userInput, expectedText, true);
                 }
             }
 
-            int accuracy = 12;
-            int speed = 52;
             if (userInput.Length == expectedText.Length)
             {
-                MessageBox.Show($"Example complete\nYour accuracy: {accuracy}%\nYour speed: {speed} cps");
+                stopwatch.Stop();
+                double elapsedSeconds = stopwatch.Elapsed.TotalSeconds;
+                int totalChars = correctChars + incorrectChars;
+                double accuracy = ((double)correctChars / totalChars) * 100;
+                double speed = (correctChars / elapsedSeconds) * 60; // characters per minute (CPM)
+
+                MessageBox.Show($"Example complete\nYour accuracy: {accuracy:F2}%\nYour speed: {speed:F2} CPM");
                 this.typingPracticePanel.Visible = false;
                 this.modeSelectionPanel.Visible = true;
                 typingPracticePanel.typingTextBox.Clear();
@@ -250,7 +269,6 @@ namespace _7typingAPP
                         button.BackColor = virtualKeyboardPanel.GetKeyColor(button.Text); // Восстанавливаем исходный цвет остальных клавиш
                     }
                 }
-
             }
         }
 

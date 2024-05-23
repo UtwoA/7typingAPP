@@ -14,8 +14,8 @@ namespace _7typingAPP
     {
         public Button startButton;
         public Button statisticsButton;
-        public Button settingsButton;
         public Button exitButton;
+        public Label mainPanelText;
         public MainPanel()
         {
             mainPanelInitializeComponent();
@@ -24,8 +24,11 @@ namespace _7typingAPP
         {
             this.startButton = new Button();
             this.statisticsButton = new Button();
-            this.settingsButton = new Button();
             this.exitButton = new Button();
+
+            this.mainPanelText = new Label();
+
+
 
             // Buttons configuration
             this.ClientSize = new System.Drawing.Size(600, 450); // ClientSize config from MainForm_config
@@ -35,6 +38,13 @@ namespace _7typingAPP
             int startY = 100;
             int buttonSpacing = 10;
 
+            this.mainPanelText.Text = "7 typing App";
+            this.mainPanelText.Location = new Point(0, startY / 2);
+            this.mainPanelText.Font = new Font("Arial", 24, FontStyle.Bold);
+            this.mainPanelText.TextAlign = ContentAlignment.TopCenter;
+            this.mainPanelText.Size = new Size(this.ClientSize.Width, this.ClientSize.Height);
+
+
             this.startButton.Text = "НАЧАТЬ";
             this.startButton.Size = new Size(buttonWidth, buttonHeight);
             this.startButton.Location = new Point(buttonLeft, startY);
@@ -43,18 +53,15 @@ namespace _7typingAPP
             this.statisticsButton.Size = new Size(buttonWidth, buttonHeight);
             this.statisticsButton.Location = new Point(buttonLeft, startY + buttonHeight + buttonSpacing);
 
-            this.settingsButton.Text = "НАСТРОЙКИ";
-            this.settingsButton.Size = new Size(buttonWidth, buttonHeight);
-            this.settingsButton.Location = new Point(buttonLeft, startY + 2 * (buttonHeight + buttonSpacing));
-
             this.exitButton.Text = "ВЫХОД";
             this.exitButton.Size = new Size(buttonWidth, buttonHeight);
-            this.exitButton.Location = new Point(buttonLeft, startY + 3 * (buttonHeight + buttonSpacing));
+            this.exitButton.Location = new Point(buttonLeft, startY + 2 * (buttonHeight + buttonSpacing));
 
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.statisticsButton);
-            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.exitButton);
+
+            this.Controls.Add(this.mainPanelText);
         }
 
     }

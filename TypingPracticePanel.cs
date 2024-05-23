@@ -60,7 +60,6 @@ namespace _7typingAPP
             this.practiceText = textsList[random.Next(textsList.Count)];
             inputTextLabel.Text = practiceText;
             currentChar = practiceText[0];
-            Console.WriteLine("Text was selected");
         }
     }
 }

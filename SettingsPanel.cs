@@ -17,9 +17,14 @@ namespace _7typingAPP
         private Label volumeLabel;
         private TrackBar volumeTrackBar;
         public Button saveSettingsButton;
+
+        // Event handlers
+        public event EventHandler WindowSizeChanged;
+        public event EventHandler VolumeChanged;
         public SettingsPanel()
         {
             settingsPanellInitializeComponent();
+            InitializeEventHandlers();
         }
         public void settingsPanellInitializeComponent()
         {
@@ -63,5 +68,32 @@ namespace _7typingAPP
             this.Controls.Add(this.saveSettingsButton);
         }
 
+        private void InitializeEventHandlers()
+        {
+            // Window size combobox event handler
+            windowSizeComboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                // Raise the WindowSizeChanged event
+                WindowSizeChanged?.Invoke(this, EventArgs.Empty);
+            };
+
+            // Volume trackbar event handler
+            volumeTrackBar.Scroll += (sender, e) =>
+            {
+                // Raise the VolumeChanged event
+                VolumeChanged?.Invoke(this, EventArgs.Empty);
+            };
+        }
+
+        // Additional properties to get the selected window size and volume
+        public string SelectedWindowSize
+        {
+            get { return windowSizeComboBox.SelectedItem.ToString(); }
+        }
+
+        public int SelectedVolume
+        {
+            get { return volumeTrackBar.Value; }
+        }
     }
 }

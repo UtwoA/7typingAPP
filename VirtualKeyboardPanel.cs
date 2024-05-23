@@ -79,16 +79,14 @@ namespace _7typingAPP
 
         public Color GetKeyColor(string key)
         {
-            Console.WriteLine("key was decolored");
-
-            if ("Ё1ЙФЯ".Contains(key)) return Color.Beige;
-            if ("2ЦЫЧ".Contains(key)) return Color.LightBlue;
-            if ("3УВС".Contains(key)) return Color.Green;
-            if ("4КАМ56ЕПИ".Contains(key)) return Color.Red;
-            if ("7НГРОТЬ".Contains(key)) return Color.Purple;
-            if ("8ШЛБ".Contains(key)) return Color.Gray;
-            if ("9ЩДЮ".Contains(key)) return Color.LightYellow;
-            if ("0ЗХЪЖЭ.-=".Contains(key)) return Color.Pink;
+            if ("Ё1ЙФЯ".Contains(key)) return Color.FromArgb(224,175,142);
+            if ("2ЦЫЧ".Contains(key)) return Color.FromArgb(155, 188, 219);
+            if ("3УВС".Contains(key)) return Color.FromArgb(173, 194, 161);
+            if ("4КАМ56ЕПИ".Contains(key)) return Color.FromArgb(222,134,133);
+            if ("7НГРОТЬ".Contains(key)) return Color.FromArgb(184, 156, 207);
+            if ("8ШЛБ".Contains(key)) return Color.FromArgb(154, 160, 172);
+            if ("9ЩДЮ".Contains(key)) return Color.FromArgb(252, 251, 135);
+            if ("0ЗХЪЖЭ.-=".Contains(key)) return Color.FromArgb(234, 178, 227);
             return Color.LightGray;
         }
 
