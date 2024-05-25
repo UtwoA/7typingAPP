@@ -37,7 +37,6 @@ namespace _7typingAPP
             this.ClientSize = new System.Drawing.Size(600, 150); // ClientSize config from MainForm_config
             int buttonWidth = 150;
             int buttonHeight = 30;
-            int buttonLeft = (this.ClientSize.Width - buttonWidth) / 2;
 
             this.inputTextLabel.Location = new System.Drawing.Point(20, 25);
             this.inputTextLabel.Size = new System.Drawing.Size(560, 50);

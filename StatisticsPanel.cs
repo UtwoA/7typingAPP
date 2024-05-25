@@ -8,12 +8,12 @@ namespace _7typingAPP
     public partial class StatisticsPanel : Panel
     {
         public Button closeStatisticsButton;
-        private Chart speedChart;
-        private Chart accuracyChart;
-        private Label statisticsLabel;
-        private Label speedLabel;
-        private Label accuracyLabel;
-        private Label pickModeLabel;
+        private readonly Chart speedChart;
+        private readonly Chart accuracyChart;
+        private readonly Label statisticsLabel;
+        private readonly Label speedLabel;
+        private readonly Label accuracyLabel;
+        private readonly Label pickModeLabel;
 
         public StatisticsPanel()
         {

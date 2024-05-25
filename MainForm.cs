@@ -18,12 +18,11 @@ namespace _7typingAPP
         private TypingPracticePanel typingPracticePanel;
         private VirtualKeyboardPanel virtualKeyboardPanel;
         private StatisticsPanel statisticsPanel;
-        Random random = new Random();
 
         private List<double> speedHistory;
         private List<double> accuracyHistory;
         private Dictionary<string, int> modeCounts;
-        private string statsFilePath = "typingStats.dat";
+        private readonly string statsFilePath = "typingStats.dat";
 
         private Stopwatch stopwatch;
         private int correctChars;
@@ -175,7 +174,7 @@ namespace _7typingAPP
         private void NumPadModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры...");
-            string[] TextList = File.ReadAllLines("C:/folder/NumPad.txt");
+            string[] TextList = File.ReadAllLines("NumPad.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("NumPad Mode");
@@ -184,7 +183,7 @@ namespace _7typingAPP
         private void TouchTypingModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв...");
-            string[] TextList = File.ReadAllLines("C:/folder/Touch Typing.txt");
+            string[] TextList = File.ReadAllLines("Touch Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Touch Typing");
@@ -193,7 +192,7 @@ namespace _7typingAPP
         private void BlindTypingModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст...");
-            string[] TextList = File.ReadAllLines("C:/folder/Blind Typing.txt");
+            string[] TextList = File.ReadAllLines("Blind Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Blind Typing");
@@ -202,7 +201,7 @@ namespace _7typingAPP
         private void FastTypingModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст...");
-            string[] TextList = File.ReadAllLines("C:/folder/Fast Typing.txt");
+            string[] TextList = File.ReadAllLines("Fast Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Fast Typing");
@@ -211,7 +210,7 @@ namespace _7typingAPP
         private void TypingTestsModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тестовые тексты...");
-            string[] TextList = File.ReadAllLines("C:/folder/Typing Tests.txt");
+            string[] TextList = File.ReadAllLines("Typing Tests.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Typing Tests");
@@ -237,7 +236,7 @@ namespace _7typingAPP
             this.modeSelectionPanel.Visible = false;
             this.typingInstructionPanel.Visible = true;
             typingInstructionPanel.instructionLabel.Text = instructions;
-            typingInstructionPanel.instructionPictureBox.Image = Image.FromFile("C:/folder/picture.jpg");
+            typingInstructionPanel.instructionPictureBox.Image = Image.FromFile("picture.jpg");
         }
 
         private void NextButton_Click(object sender, EventArgs e)
