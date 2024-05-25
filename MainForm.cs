@@ -22,7 +22,7 @@ namespace _7typingAPP
         private List<double> speedHistory;
         private List<double> accuracyHistory;
         private Dictionary<string, int> modeCounts;
-        private readonly string statsFilePath = "typingStats.dat";
+        private string statsFilePath = "typingStats.dat";
 
         private Stopwatch stopwatch;
         private int correctChars;
@@ -124,9 +124,8 @@ namespace _7typingAPP
                         modeCounts = stats.ModeCounts ?? InitializeModeCounts();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show("Failed to load statistics. Initializing new statistics. Error: " + ex.Message);
                     InitializeNewStatistics();
                 }
             }
@@ -173,8 +172,7 @@ namespace _7typingAPP
         // MODE SELECTION PANEL METHODS
         private void NumPadModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры...");
-            string[] TextList = File.ReadAllLines("NumPad.txt");
+            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры. Это идеальный выбор для тех, \nкто хочет улучшить свои навыки ввода чисел на цифровой клавиатуре. Этот режим поможет повысить точность \nи скорость работы с цифрами, что полезно для выполнения бухгалтерских задач, работы с таблицами и других действий, требующих ввода чисел."); string[] TextList = File.ReadAllLines("NumPad.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("NumPad Mode");
@@ -182,8 +180,7 @@ namespace _7typingAPP
 
         private void TouchTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв...");
-            string[] TextList = File.ReadAllLines("Touch Typing.txt");
+            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв, не имеющих смысла. \nОсновная цель данного режима — развить навыки слепой печати и улучшить координацию пальцев. Ввод бессмысленных буквенных комбинаций помогает пользователю сосредоточиться на механике печати, не отвлекаясь на смысл текста."); string[] TextList = File.ReadAllLines("Touch Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Touch Typing");
@@ -191,8 +188,7 @@ namespace _7typingAPP
 
         private void BlindTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст...");
-            string[] TextList = File.ReadAllLines("Blind Typing.txt");
+            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст. Это может быть статья, \nрассказ или отрывок из книги. Цель этого режима — улучшить навыки слепой печати осмысленного текста, \nчто помогает развивать память пальцев и увеличивает общую скорость печати, а также улучшает навыки восприятия и ввода текста."); string[] TextList = File.ReadAllLines("Blind Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Blind Typing");
@@ -200,8 +196,7 @@ namespace _7typingAPP
 
         private void FastTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст...");
-            string[] TextList = File.ReadAllLines("Fast Typing.txt");
+            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст. Тексты могут \nсодержать сложные слова, знаки препинания и цифры. Цель данного режима — максимально увеличить \nскорость nпечати при сохранении точности. Этот режим идеален для тех, кто хочет продвинуть свои навыки на новый уровень и научиться быстро и точно печатать сложные тексты."); string[] TextList = File.ReadAllLines("Fast Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Fast Typing");
@@ -209,8 +204,7 @@ namespace _7typingAPP
 
         private void TypingTestsModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тестовые тексты...");
-            string[] TextList = File.ReadAllLines("Typing Tests.txt");
+            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тесты. Каждый тест имеет определенное время \nи сложность, по окончании которого пользователь получает оценку своих навыков. Это помогает объективно \nоценить свои возможности и прогресс в обучении, а также выявить слабые стороны, требующие доработки."); string[] TextList = File.ReadAllLines("Typing Tests.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
             IncrementModeCount("Typing Tests");
@@ -219,7 +213,7 @@ namespace _7typingAPP
         private void FreeModeButton_Click(object sender, EventArgs e)
         {
             StartTypingPractice("Free Mode\r\nВ этом режиме пользователь может свободно печатать любой текст...");
-            typingPracticePanel.selectText(new List<string> { "Type whatever you want!" });
+            typingPracticePanel.selectText(new List<string> { "Набирайте что угодно!" });
             IncrementModeCount("Free Mode");
         }
 
