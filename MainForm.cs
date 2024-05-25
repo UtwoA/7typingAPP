@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace _7typingAPP
 {
@@ -19,7 +20,11 @@ namespace _7typingAPP
         private StatisticsPanel statisticsPanel;
         Random random = new Random();
 
-        // Variables for tracking typing performance
+        private List<double> speedHistory;
+        private List<double> accuracyHistory;
+        private Dictionary<string, int> modeCounts;
+        private string statsFilePath = "typingStats.dat";
+
         private Stopwatch stopwatch;
         private int correctChars;
         private int incorrectChars;
@@ -29,6 +34,7 @@ namespace _7typingAPP
             InitializeComponent();
             CenterToScreen();
             startProgramm();
+            LoadStatistics();
         }
 
         public void startProgramm()
@@ -74,6 +80,7 @@ namespace _7typingAPP
         {
             this.mainPanel.Visible = false;
             this.statisticsPanel.Visible = true;
+            statisticsPanel.UpdateStatistics(speedHistory, accuracyHistory, modeCounts);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -87,54 +94,134 @@ namespace _7typingAPP
             this.statisticsPanel.Visible = false;
             this.mainPanel.Visible = true;
         }
+        private void SaveStatistics()
+        {
+            var stats = new TypingStatistics
+            {
+                Speeds = speedHistory,
+                Accuracies = accuracyHistory,
+                ModeCounts = modeCounts
+            };
+
+            using (FileStream fs = new FileStream(statsFilePath, FileMode.Create))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, stats);
+            }
+        }
+
+        private void LoadStatistics()
+        {
+            if (File.Exists(statsFilePath))
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(statsFilePath, FileMode.Open))
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        var stats = (TypingStatistics)formatter.Deserialize(fs);
+                        speedHistory = stats.Speeds;
+                        accuracyHistory = stats.Accuracies;
+                        modeCounts = stats.ModeCounts ?? InitializeModeCounts();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load statistics. Initializing new statistics. Error: " + ex.Message);
+                    InitializeNewStatistics();
+                }
+            }
+            else
+            {
+                InitializeNewStatistics();
+            }
+        }
+        private void InitializeNewStatistics()
+        {
+            speedHistory = new List<double>();
+            accuracyHistory = new List<double>();
+            modeCounts = InitializeModeCounts();
+        }
+        private Dictionary<string, int> InitializeModeCounts()
+        {
+            return new Dictionary<string, int>
+            {
+                { "NumPad Mode", 0 },
+                { "Touch Typing", 0 },
+                { "Blind Typing", 0 },
+                { "Fast Typing", 0 },
+                { "Typing Tests", 0 },
+                { "Free Mode", 0 }
+            };
+        }
+
+        private void UpdateCurrentStatistics(double speed, double accuracy)
+        {
+            speedHistory.Add(speed);
+            accuracyHistory.Add(accuracy);
+            SaveStatistics();
+        }
+
+        private void IncrementModeCount(string mode)
+        {
+            if (modeCounts.ContainsKey(mode))
+            {
+                modeCounts[mode]++;
+                SaveStatistics();
+            }
+        }
 
         // MODE SELECTION PANEL METHODS
         private void NumPadModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры. Это идеальный выбор для тех, \nкто хочет улучшить свои навыки ввода чисел на цифровой клавиатуре. Этот режим поможет повысить точность \nи скорость работы с цифрами, что полезно для выполнения бухгалтерских задач, работы с таблицами и других действий, требующих ввода чисел.");
+            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры...");
             string[] TextList = File.ReadAllLines("C:/folder/NumPad.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
+            IncrementModeCount("NumPad Mode");
         }
 
         private void TouchTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв, не имеющих смысла. \nОсновная цель данного режима — развить навыки слепой печати и улучшить координацию пальцев. Ввод бессмысленных буквенных комбинаций помогает пользователю сосредоточиться на механике печати, не отвлекаясь на смысл текста.");
+            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв...");
             string[] TextList = File.ReadAllLines("C:/folder/Touch Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
+            IncrementModeCount("Touch Typing");
         }
 
         private void BlindTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст. Это может быть статья, \nрассказ или отрывок из книги. Цель этого режима — улучшить навыки слепой печати осмысленного текста, \nчто помогает развивать память пальцев и увеличивает общую скорость печати, а также улучшает навыки восприятия и ввода текста.");
+            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст...");
             string[] TextList = File.ReadAllLines("C:/folder/Blind Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
+            IncrementModeCount("Blind Typing");
         }
 
         private void FastTypingModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст. Тексты могут \nсодержать сложные слова, знаки препинания и цифры. Цель данного режима — максимально увеличить \nскорость nпечати при сохранении точности. Этот режим идеален для тех, кто хочет продвинуть свои навыки на новый уровень и научиться быстро и точно печатать сложные тексты.");
+            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст...");
             string[] TextList = File.ReadAllLines("C:/folder/Fast Typing.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
+            IncrementModeCount("Fast Typing");
         }
 
         private void TypingTestsModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тесты. Каждый тест имеет определенное время \nи сложность, по окончании которого пользователь получает оценку своих навыков. Это помогает объективно \nоценить свои возможности и прогресс в обучении, а также выявить слабые стороны, требующие доработки.");
+            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тестовые тексты...");
             string[] TextList = File.ReadAllLines("C:/folder/Typing Tests.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanel.selectText(practiceTexts);
+            IncrementModeCount("Typing Tests");
         }
 
         private void FreeModeButton_Click(object sender, EventArgs e)
         {
-            StartTypingPractice("Free Mode\r\nВ этом режиме пользователь может загрузить свой файл с текстом, после чего вводить его. Это позволяет \nтренироваться на тех текстах, которые наиболее актуальны для пользователя. Можно загрузить любой текст: \nстатьи, рабочие документы, учебные материалы и другие. Такой режим предоставляет максимальную гибкость в обучении и позволяет адаптировать тренировки под индивидуальные нужды пользователя.");
-            string[] TextList = File.ReadAllLines("C:/folder/Free Mode.txt");
-            List<string> practiceTexts = TextList.ToList();
-            typingPracticePanel.selectText(practiceTexts);
+            StartTypingPractice("Free Mode\r\nВ этом режиме пользователь может свободно печатать любой текст...");
+            typingPracticePanel.selectText(new List<string> { "Type whatever you want!" });
+            IncrementModeCount("Free Mode");
         }
 
         private void BackButtonModeSelectionToMain_Click(object sender, EventArgs e)
@@ -246,6 +333,8 @@ namespace _7typingAPP
                 double accuracy = ((double)correctChars / totalChars) * 100;
                 double speed = (correctChars / elapsedSeconds) * 60; // characters per minute (CPM)
 
+                UpdateCurrentStatistics(speed, accuracy);
+
                 MessageBox.Show($"Example complete\nYour accuracy: {accuracy:F2}%\nYour speed: {speed:F2} CPM");
                 this.typingPracticePanel.Visible = false;
                 this.modeSelectionPanel.Visible = true;
@@ -299,6 +388,14 @@ namespace _7typingAPP
             {
                 HighlightFirstChar(textToType);
             }
+        }
+
+        [Serializable]
+        public class TypingStatistics
+        {
+            public List<double> Speeds { get; set; }
+            public List<double> Accuracies { get; set; }
+            public Dictionary<string, int> ModeCounts { get; set; }
         }
 
         // Обработчик события изменения текста в typingTextBox
