@@ -37,7 +37,6 @@ namespace _7typingAPP
             this.typingPracticePanel = new _7typingAPP.TypingPracticePanel();
             this.virtualKeyboardPanel = new _7typingAPP.VirtualKeyboardPanel();
             this.statisticsPanel = new _7typingAPP.StatisticsPanel();
-            this.settingsPanel = new _7typingAPP.SettingsPanel();
             this.typingPracticePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,14 +83,6 @@ namespace _7typingAPP
             this.statisticsPanel.Size = new System.Drawing.Size(600, 450);
             this.statisticsPanel.TabIndex = 5;
             // 
-            // settingsPanel
-            // 
-            this.settingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.settingsPanel.Location = new System.Drawing.Point(0, 0);
-            this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(600, 450);
-            this.settingsPanel.TabIndex = 6;
-            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(600, 450);
@@ -100,7 +91,6 @@ namespace _7typingAPP
             this.Controls.Add(this.modeSelectionPanel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.statisticsPanel);
-            this.Controls.Add(this.settingsPanel);
             this.Name = "MainForm";
             this.Text = "Typing Trainer";
             this.typingPracticePanel.ResumeLayout(false);

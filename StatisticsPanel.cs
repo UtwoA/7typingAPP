@@ -37,7 +37,7 @@ namespace _7typingAPP
 
             this.closeStatisticsButton.Location = new System.Drawing.Point((this.ClientSize.Width - buttonWidth_mode) / 2, startY_mode + (buttonSpacing_mode + buttonHeight_mode) * 7);
             this.closeStatisticsButton.Size = new Size(buttonWidth_mode, buttonHeight_mode);
-            this.closeStatisticsButton.Text = "НАЗАД";
+            this.closeStatisticsButton.Text = "Назад";
 
 
             this.Controls.Add(this.statisticsLabel);

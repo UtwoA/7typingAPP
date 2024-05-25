@@ -45,15 +45,15 @@ namespace _7typingAPP
             this.mainPanelText.Size = new Size(this.ClientSize.Width, this.ClientSize.Height);
 
 
-            this.startButton.Text = "НАЧАТЬ";
+            this.startButton.Text = "Начать";
             this.startButton.Size = new Size(buttonWidth, buttonHeight);
             this.startButton.Location = new Point(buttonLeft, startY);
 
-            this.statisticsButton.Text = "СТАТИСТИКА";
+            this.statisticsButton.Text = "Статистика";
             this.statisticsButton.Size = new Size(buttonWidth, buttonHeight);
             this.statisticsButton.Location = new Point(buttonLeft, startY + buttonHeight + buttonSpacing);
 
-            this.exitButton.Text = "ВЫХОД";
+            this.exitButton.Text = "Выход";
             this.exitButton.Size = new Size(buttonWidth, buttonHeight);
             this.exitButton.Location = new Point(buttonLeft, startY + 2 * (buttonHeight + buttonSpacing));
 

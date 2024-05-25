@@ -81,7 +81,7 @@ namespace _7typingAPP
             this.fastTypingModeButton.Text = "Fast Typing";
             this.fastTypingModeButton.Location = new System.Drawing.Point(buttonLeft_mode, startY_mode + (buttonSpacing_mode + buttonHeight_mode) * 4);
             this.fastTypingModeButton.Size = new Size(buttonWidth_mode, buttonHeight_mode);
-            fastTyping.Text = "Режим усложненного осмысленного текста для повышения скорости и точности печати.";
+            fastTyping.Text = "Усложненный режим ввода осмысленного текста.";
             fastTyping.Location = new Point(buttonLeft_mode + buttonWidth_mode + buttonSpacing_mode, startY_mode + (buttonSpacing_mode + buttonHeight_mode) * 4 + 7);
             fastTyping.Size = new Size(this.ClientSize.Width, buttonHeight_mode);
 
@@ -101,7 +101,7 @@ namespace _7typingAPP
 
             this.backButtonModeSelectionToMain.Location = new System.Drawing.Point((this.ClientSize.Width - buttonWidth_mode) / 2, startY_mode + (buttonSpacing_mode + buttonHeight_mode) * 7);
             this.backButtonModeSelectionToMain.Size = new Size(buttonWidth_mode, buttonHeight_mode);
-            this.backButtonModeSelectionToMain.Text = "НАЗАД";
+            this.backButtonModeSelectionToMain.Text = "Назад";
 
             this.Controls.Add(this.numPadModeButton);
             this.Controls.Add(this.touchTypingModeButton);

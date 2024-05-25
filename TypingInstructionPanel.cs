@@ -32,8 +32,6 @@ namespace _7typingAPP
             int buttonWidth = 150;
             int buttonHeight = 30;
             int buttonLeft = (this.ClientSize.Width - buttonWidth) / 2;
-            int startY = 100;
-            int buttonSpacing = 10;
 
             this.instructionLabel.Location = new Point(20, 20);
             this.instructionLabel.Size = new System.Drawing.Size(600, 90);
@@ -48,7 +46,7 @@ namespace _7typingAPP
 
 
             this.backButtonToModeSelection.Size = new Size(buttonWidth, buttonHeight);
-            this.backButtonToModeSelection.Text = "НАЗАД";
+            this.backButtonToModeSelection.Text = "Назад";
             this.backButtonToModeSelection.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4, this.ClientSize.Height - nextButton.Height * 3 / 2);
 
             this.Controls.Add(this.instructionLabel);
