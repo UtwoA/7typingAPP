@@ -17,39 +17,33 @@ namespace _7typingAPP
 
         public StatisticsPanel()
         {
-            // Initialize the label
-            statisticsLabel = new Label
-            {
-                Text = "Статистика",
-                Font = new Font("Arial", 16, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Dock = DockStyle.Fill
-            };
+            this.statisticsLabel = new Label();
+            this.statisticsLabel.Text = "Статистика";
+            this.statisticsLabel.Font = new Font("Arial", 16, FontStyle.Bold);
+            this.statisticsLabel.TextAlign = ContentAlignment.MiddleCenter;
+            this.statisticsLabel.Dock = DockStyle.Fill;
+            this.statisticsLabel.ForeColor = Color.FromArgb(28, 64, 56);
 
-            // Initialize the speed chart label
-            speedLabel = new Label
-            {
-                Text = "Скорость (нажатий в минуту)",
-                TextAlign = ContentAlignment.MiddleCenter,
-                Dock = DockStyle.Fill
-            };
+            this.speedLabel = new Label();
+            this.speedLabel.Text = "Скорость (нажатий в минуту)";
+            this.speedLabel.Font = new Font("Arial", 12, FontStyle.Regular);
+            this.speedLabel.TextAlign = ContentAlignment.MiddleCenter;
+            this.speedLabel.Dock = DockStyle.Fill;
+            this.speedLabel.ForeColor = Color.FromArgb(209, 208, 123);
 
-            // Initialize the accuracy chart label
-            accuracyLabel = new Label
-            {
-                Text = "Точность (%)",
-                TextAlign = ContentAlignment.MiddleCenter,
-                Dock = DockStyle.Fill
-            };
+            this.accuracyLabel = new Label();
+            this.accuracyLabel.Text = "Точность (%)";
+            this.accuracyLabel.Font = new Font("Arial", 12, FontStyle.Regular);
+            this.accuracyLabel.TextAlign = ContentAlignment.MiddleCenter;
+            this.accuracyLabel.Dock = DockStyle.Fill;
+            this.accuracyLabel.ForeColor = Color.FromArgb(209, 208, 123);
 
-            // Initialize the pick mode label
-            pickModeLabel = new Label
-            {
-                Text = "Количество упражнений в режимах:",
-                TextAlign = ContentAlignment.MiddleLeft,
-                Dock = DockStyle.Fill,
-                AutoSize = true
-            };
+            this.pickModeLabel = new Label();
+            this.pickModeLabel.Text = "Количество упражнений в режимах:";
+            this.pickModeLabel.Font = new Font("Arial", 12, FontStyle.Regular);
+            this.pickModeLabel.TextAlign = ContentAlignment.MiddleLeft;
+            this.pickModeLabel.Dock = DockStyle.Fill;
+            this.pickModeLabel.ForeColor = Color.FromArgb(209, 208, 123);
 
             // Initialize the speed chart
             speedChart = new Chart
@@ -63,7 +57,6 @@ namespace _7typingAPP
                 ChartType = SeriesChartType.Line
             });
 
-            // Initialize the accuracy chart
             accuracyChart = new Chart
             {
                 Dock = DockStyle.Fill,
@@ -75,22 +68,18 @@ namespace _7typingAPP
                 ChartType = SeriesChartType.Line
             });
 
-            // Initialize the close button
-            closeStatisticsButton = new Button
-            {
-                Text = "Назад",
-                Width = 85,
-                Height = 30,
-                Anchor = AnchorStyles.Bottom
-            };
+            this.closeStatisticsButton = new Button();
+            this.closeStatisticsButton.Text = "Назад";
+            this.closeStatisticsButton.Width = 85;
+            this.closeStatisticsButton.Height = 30;
+            this.closeStatisticsButton.Anchor = AnchorStyles.Bottom;
 
-            // Initialize the TableLayoutPanel
-            TableLayoutPanel layout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 6
-            };
+            TableLayoutPanel layout = new TableLayoutPanel();
+
+            layout.Dock = DockStyle.Fill;
+            layout.ColumnCount = 2;
+            layout.RowCount = 6;
+
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));

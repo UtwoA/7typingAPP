@@ -43,19 +43,26 @@ namespace _7typingAPP
             this.mainPanelText.Font = new Font("Arial", 24, FontStyle.Bold);
             this.mainPanelText.TextAlign = ContentAlignment.TopCenter;
             this.mainPanelText.Size = new Size(this.ClientSize.Width, this.ClientSize.Height);
+            this.mainPanelText.ForeColor = Color.FromArgb(28, 64, 56);
 
 
             this.startButton.Text = "Начать";
             this.startButton.Size = new Size(buttonWidth, buttonHeight);
             this.startButton.Location = new Point(buttonLeft, startY);
+            this.startButton.Font = new Font("Arial", 12, FontStyle.Bold);
+            this.startButton.ForeColor = Color.FromArgb(28, 64, 56);
 
             this.statisticsButton.Text = "Статистика";
             this.statisticsButton.Size = new Size(buttonWidth, buttonHeight);
             this.statisticsButton.Location = new Point(buttonLeft, startY + buttonHeight + buttonSpacing);
+            this.statisticsButton.Font = new Font("Arial", 12, FontStyle.Bold);
+            this.statisticsButton.ForeColor = Color.FromArgb(28, 64, 56);
 
             this.exitButton.Text = "Выход";
             this.exitButton.Size = new Size(buttonWidth, buttonHeight);
             this.exitButton.Location = new Point(buttonLeft, startY + 2 * (buttonHeight + buttonSpacing));
+            this.exitButton.Font = new Font("Arial", 12, FontStyle.Bold);
+            this.exitButton.ForeColor = Color.FromArgb(28, 64, 56);
 
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.statisticsButton);

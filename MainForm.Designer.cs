@@ -32,30 +32,22 @@ namespace _7typingAPP
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.mainPanel = new _7typingAPP.MainPanel();
-            this.modeSelectionPanel = new _7typingAPP.ModeSelectionPanel();
+            this.statisticsPanel = new _7typingAPP.StatisticsPanel();
             this.typingInstructionPanel = new _7typingAPP.TypingInstructionPanel();
             this.typingPracticePanel = new _7typingAPP.TypingPracticePanel();
             this.virtualKeyboardPanel = new _7typingAPP.VirtualKeyboardPanel();
-            this.statisticsPanel = new _7typingAPP.StatisticsPanel();
+            this.modeSelectionPanel = new _7typingAPP.ModeSelectionPanel();
+            this.mainPanel = new _7typingAPP.MainPanel();
             this.typingPracticePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // mainPanel
+            // statisticsPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(600, 450);
-            this.mainPanel.TabIndex = 4;
-            // 
-            // modeSelectionPanel
-            // 
-            this.modeSelectionPanel.BackColor = System.Drawing.Color.Transparent;
-            this.modeSelectionPanel.Location = new System.Drawing.Point(0, 0);
-            this.modeSelectionPanel.Name = "modeSelectionPanel";
-            this.modeSelectionPanel.Size = new System.Drawing.Size(600, 450);
-            this.modeSelectionPanel.TabIndex = 3;
+            this.statisticsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.statisticsPanel.Location = new System.Drawing.Point(0, 0);
+            this.statisticsPanel.Name = "statisticsPanel";
+            this.statisticsPanel.Size = new System.Drawing.Size(600, 450);
+            this.statisticsPanel.TabIndex = 5;
             // 
             // typingInstructionPanel
             // 
@@ -83,13 +75,21 @@ namespace _7typingAPP
             this.virtualKeyboardPanel.Size = new System.Drawing.Size(600, 450);
             this.virtualKeyboardPanel.TabIndex = 0;
             // 
-            // statisticsPanel
+            // modeSelectionPanel
             // 
-            this.statisticsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.statisticsPanel.Location = new System.Drawing.Point(0, 0);
-            this.statisticsPanel.Name = "statisticsPanel";
-            this.statisticsPanel.Size = new System.Drawing.Size(600, 450);
-            this.statisticsPanel.TabIndex = 5;
+            this.modeSelectionPanel.BackColor = System.Drawing.Color.Transparent;
+            this.modeSelectionPanel.Location = new System.Drawing.Point(0, 0);
+            this.modeSelectionPanel.Name = "modeSelectionPanel";
+            this.modeSelectionPanel.Size = new System.Drawing.Size(600, 450);
+            this.modeSelectionPanel.TabIndex = 3;
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(600, 450);
+            this.mainPanel.TabIndex = 4;
             // 
             // MainForm
             // 

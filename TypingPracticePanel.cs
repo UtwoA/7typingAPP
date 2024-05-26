@@ -41,6 +41,8 @@ namespace _7typingAPP
             this.inputTextLabel.Location = new System.Drawing.Point(20, 25);
             this.inputTextLabel.Size = new System.Drawing.Size(560, 50);
             this.inputTextLabel.TextAlign = ContentAlignment.MiddleCenter;
+            this.inputTextLabel.Font = new Font("Arial", 11, FontStyle.Regular);
+            this.inputTextLabel.ForeColor = Color.FromArgb(209, 208, 123);
 
             this.typingTextBox.Location = new System.Drawing.Point(20, 80);
             this.typingTextBox.Size = new System.Drawing.Size(560, 50);
@@ -49,6 +51,8 @@ namespace _7typingAPP
             this.backButtonToInstruction.Text = "К инструкции";
             this.backButtonToInstruction.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
             this.backButtonToInstruction.Location = new System.Drawing.Point((ClientSize.Width - backButtonToInstruction.Width) / 2, 150);
+            this.backButtonToInstruction.Font = new Font("Arial", 9, FontStyle.Bold);
+            this.backButtonToInstruction.ForeColor = Color.FromArgb(28, 64, 56);
 
             this.Controls.Add(this.inputTextLabel);
             this.Controls.Add(this.typingTextBox);

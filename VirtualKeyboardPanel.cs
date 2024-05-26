@@ -45,6 +45,7 @@ namespace _7typingAPP
                 for (int col = 0; col < keyboardLayout[row].Length; col++)
                 {
                     Button keyButton = new Button();
+
                     keyButton.Text = keyboardLayout[row][col].ToString();
                     keyButton.Size = new Size(keySize, keySize);
                     int x = col * (keySize + spacingX);
@@ -74,6 +75,13 @@ namespace _7typingAPP
                     this.Controls.Add(keyButton);
                 }
             }
+            Button spaceButton = new Button();
+
+            spaceButton.Text = " ";
+            spaceButton.Size = new Size(keySize * 7, keySize);
+            spaceButton.Location = new Point(150, 175);
+
+            this.Controls.Add(spaceButton);
         }
 
 
