@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace _7typingAPP
@@ -44,7 +37,7 @@ namespace _7typingAPP
             Label freeMode = new Label();
 
 
-            this.ClientSize = new System.Drawing.Size(600, 450); // ClientSize config from MainForm_config
+            this.ClientSize = new System.Drawing.Size(600, 450);
 
             int buttonWidth_mode = 90;
             int buttonHeight_mode = 30;
@@ -134,7 +127,6 @@ namespace _7typingAPP
             this.backButtonModeSelectionToMain.Text = "Назад";
             this.backButtonModeSelectionToMain.Font = new Font("Arial", 9, FontStyle.Bold);
             this.backButtonModeSelectionToMain.ForeColor = Color.FromArgb(28, 64, 56);
-
 
             this.Controls.Add(this.numPadModeButton);
             this.Controls.Add(this.touchTypingModeButton);

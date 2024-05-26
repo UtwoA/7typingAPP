@@ -104,7 +104,7 @@ namespace _7typingAPP
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Typing Trainer";
+            this.Text = "7 Typing App";
             this.typingPracticePanel.ResumeLayout(false);
             this.typingPracticePanel.PerformLayout();
             this.ResumeLayout(false);

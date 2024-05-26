@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _7typingAPP
@@ -34,15 +28,15 @@ namespace _7typingAPP
             this.typingTextBox = new TextBox();
             this.backButtonToInstruction = new Button();
 
-            this.ClientSize = new System.Drawing.Size(600, 150); // ClientSize config from MainForm_config
+            this.ClientSize = new System.Drawing.Size(600, 150);
             int buttonWidth = 150;
             int buttonHeight = 30;
 
             this.inputTextLabel.Location = new System.Drawing.Point(20, 25);
             this.inputTextLabel.Size = new System.Drawing.Size(560, 50);
             this.inputTextLabel.TextAlign = ContentAlignment.MiddleCenter;
-            this.inputTextLabel.Font = new Font("Arial", 11, FontStyle.Regular);
-            this.inputTextLabel.ForeColor = Color.FromArgb(209, 208, 123);
+            this.inputTextLabel.Font = new Font("Arial", 11, FontStyle.Bold);
+            this.inputTextLabel.ForeColor = Color.FromArgb(28, 64, 56);
 
             this.typingTextBox.Location = new System.Drawing.Point(20, 80);
             this.typingTextBox.Size = new System.Drawing.Size(560, 50);

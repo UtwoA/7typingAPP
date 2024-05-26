@@ -45,7 +45,7 @@ namespace _7typingAPP
             this.pickModeLabel.Dock = DockStyle.Fill;
             this.pickModeLabel.ForeColor = Color.FromArgb(209, 208, 123);
 
-            // Initialize the speed chart
+            // График скорости
             speedChart = new Chart
             {
                 Dock = DockStyle.Fill,
@@ -56,7 +56,7 @@ namespace _7typingAPP
             {
                 ChartType = SeriesChartType.Line
             });
-
+            // График точности
             accuracyChart = new Chart
             {
                 Dock = DockStyle.Fill,
@@ -73,7 +73,10 @@ namespace _7typingAPP
             this.closeStatisticsButton.Width = 85;
             this.closeStatisticsButton.Height = 30;
             this.closeStatisticsButton.Anchor = AnchorStyles.Bottom;
+            this.closeStatisticsButton.Font = new Font("Arial", 12, FontStyle.Bold);
+            this.closeStatisticsButton.ForeColor = Color.FromArgb(28, 64, 56);
 
+            // Разметка таблицей
             TableLayoutPanel layout = new TableLayoutPanel();
 
             layout.Dock = DockStyle.Fill;
@@ -87,9 +90,8 @@ namespace _7typingAPP
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40)); // Row for the close button
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40)); // Строка для кнопки "Назад"
 
-            // Add controls to the TableLayoutPanel
             layout.Controls.Add(statisticsLabel, 0, 0);
             layout.SetColumnSpan(statisticsLabel, 2);
             layout.Controls.Add(speedLabel, 0, 1);
@@ -101,11 +103,11 @@ namespace _7typingAPP
             layout.Controls.Add(closeStatisticsButton, 0, 5);
             layout.SetColumnSpan(closeStatisticsButton, 2);
 
-            // Center the close button
+            // Центрирование кнопки "Назад"
             layout.SetCellPosition(closeStatisticsButton, new TableLayoutPanelCellPosition(1, 5));
             layout.SetColumnSpan(closeStatisticsButton, 2);
 
-            // Add the layout to the panel
+            // Добавляем разметку
             Controls.Add(layout);
         }
 

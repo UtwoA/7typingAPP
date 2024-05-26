@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace _7typingAPP
@@ -28,23 +21,19 @@ namespace _7typingAPP
 
             this.mainPanelText = new Label();
 
-
-
-            // Buttons configuration
-            this.ClientSize = new System.Drawing.Size(600, 450); // ClientSize config from MainForm_config
+            this.ClientSize = new System.Drawing.Size(600, 450);
             int buttonWidth = 150;
             int buttonHeight = 30;
             int buttonLeft = (this.ClientSize.Width - buttonWidth) / 2;
-            int startY = 100;
+            int startY = 200;
             int buttonSpacing = 10;
 
-            this.mainPanelText.Text = "7 typing App";
+            this.mainPanelText.Text = "7 Typing App";
             this.mainPanelText.Location = new Point(0, startY / 2);
             this.mainPanelText.Font = new Font("Arial", 24, FontStyle.Bold);
             this.mainPanelText.TextAlign = ContentAlignment.TopCenter;
             this.mainPanelText.Size = new Size(this.ClientSize.Width, this.ClientSize.Height);
             this.mainPanelText.ForeColor = Color.FromArgb(28, 64, 56);
-
 
             this.startButton.Text = "Начать";
             this.startButton.Size = new Size(buttonWidth, buttonHeight);
