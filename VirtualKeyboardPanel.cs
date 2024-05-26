@@ -27,13 +27,14 @@ namespace _7typingAPP
             this.ClientSize = new Size(600, 450);
             this.Location = new Point(10, 200);
             this.SuspendLayout();
+            
 
             string[] keyboardLayout = {
-        "Ё1234567890-=",
-        "ЙЦУКЕНГШЩЗХЪ",
-        "ФЫВАПРОЛДЖЭ",
-        "ЯЧСМИТЬБЮ."
-    };
+            "Ё1234567890-=",
+            "ЙЦУКЕНГШЩЗХЪ",
+            "ФЫВАПРОЛДЖЭ",
+            "ЯЧСМИТЬБЮ."
+             };
 
             int keySize = 40;
             int spacingX = 2;

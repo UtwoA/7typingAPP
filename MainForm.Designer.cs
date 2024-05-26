@@ -31,6 +31,7 @@ namespace _7typingAPP
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainPanel = new _7typingAPP.MainPanel();
             this.modeSelectionPanel = new _7typingAPP.ModeSelectionPanel();
             this.typingInstructionPanel = new _7typingAPP.TypingInstructionPanel();
@@ -42,6 +43,7 @@ namespace _7typingAPP
             // 
             // mainPanel
             // 
+            this.mainPanel.BackColor = System.Drawing.Color.Transparent;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(600, 450);
@@ -49,6 +51,7 @@ namespace _7typingAPP
             // 
             // modeSelectionPanel
             // 
+            this.modeSelectionPanel.BackColor = System.Drawing.Color.Transparent;
             this.modeSelectionPanel.Location = new System.Drawing.Point(0, 0);
             this.modeSelectionPanel.Name = "modeSelectionPanel";
             this.modeSelectionPanel.Size = new System.Drawing.Size(600, 450);
@@ -56,6 +59,8 @@ namespace _7typingAPP
             // 
             // typingInstructionPanel
             // 
+            this.typingInstructionPanel.BackColor = System.Drawing.Color.Transparent;
+            this.typingInstructionPanel.BackgroundImage = global::_7typingAPP.Properties.Resources._18bf71_271830_1920_1080__1_;
             this.typingInstructionPanel.Location = new System.Drawing.Point(0, 0);
             this.typingInstructionPanel.Name = "typingInstructionPanel";
             this.typingInstructionPanel.Size = new System.Drawing.Size(600, 450);
@@ -63,6 +68,7 @@ namespace _7typingAPP
             // 
             // typingPracticePanel
             // 
+            this.typingPracticePanel.BackColor = System.Drawing.Color.Transparent;
             this.typingPracticePanel.Controls.Add(this.virtualKeyboardPanel);
             this.typingPracticePanel.Location = new System.Drawing.Point(0, 0);
             this.typingPracticePanel.Name = "typingPracticePanel";
@@ -71,6 +77,7 @@ namespace _7typingAPP
             // 
             // virtualKeyboardPanel
             // 
+            this.virtualKeyboardPanel.BackColor = System.Drawing.Color.Transparent;
             this.virtualKeyboardPanel.Location = new System.Drawing.Point(3, 203);
             this.virtualKeyboardPanel.Name = "virtualKeyboardPanel";
             this.virtualKeyboardPanel.Size = new System.Drawing.Size(600, 450);
@@ -78,6 +85,7 @@ namespace _7typingAPP
             // 
             // statisticsPanel
             // 
+            this.statisticsPanel.BackColor = System.Drawing.Color.Transparent;
             this.statisticsPanel.Location = new System.Drawing.Point(0, 0);
             this.statisticsPanel.Name = "statisticsPanel";
             this.statisticsPanel.Size = new System.Drawing.Size(600, 450);
@@ -85,12 +93,16 @@ namespace _7typingAPP
             // 
             // MainForm
             // 
+            this.BackgroundImage = global::_7typingAPP.Properties.Resources._18bf71_271830_1920_1080__1_;
             this.ClientSize = new System.Drawing.Size(600, 450);
-            this.Controls.Add(this.typingPracticePanel);
+            this.Controls.Add(this.statisticsPanel);
             this.Controls.Add(this.typingInstructionPanel);
+            this.Controls.Add(this.typingPracticePanel);
             this.Controls.Add(this.modeSelectionPanel);
             this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.statisticsPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Typing Trainer";
             this.typingPracticePanel.ResumeLayout(false);

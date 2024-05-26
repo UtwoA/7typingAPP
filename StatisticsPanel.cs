@@ -20,7 +20,7 @@ namespace _7typingAPP
             // Initialize the label
             statisticsLabel = new Label
             {
-                Text = "Statistics",
+                Text = "Статистика",
                 Font = new Font("Arial", 16, FontStyle.Bold),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill
@@ -136,8 +136,6 @@ namespace _7typingAPP
             {
                 pickModeLabel.Text += $"{mode.Key}: {mode.Value}\n";
             }
-
-            // Use HTML rendering to add spacing between lines
             pickModeLabel.Text = pickModeLabel.Text.Replace("\n", "\n\n");
         }
     }

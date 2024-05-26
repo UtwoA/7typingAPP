@@ -41,8 +41,9 @@ namespace _7typingAPP
             this.nextButton.Location = new System.Drawing.Point((ClientSize.Width - nextButton.Width) / 4 * 3, this.ClientSize.Height - nextButton.Height * 3 / 2);
 
             this.instructionPictureBox.Size = new Size(this.ClientSize.Width, this.ClientSize.Height / 3 * 2);
-            this.instructionPictureBox.Location = new Point(0, this.ClientSize.Height / 5 * 2 - nextButton.Height * 3);
+            this.instructionPictureBox.Location = new Point(0, 105);
             this.instructionPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            
 
 
             this.backButtonToModeSelection.Size = new Size(buttonWidth, buttonHeight);
