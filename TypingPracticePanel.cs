@@ -133,7 +133,16 @@ namespace _7typingAPP
             }
 
             char nextCharToType = char.ToLower(textToType[typingPracticePanelVisual.currentCharIndex]);
-            char lastCharTyped = userInput.Length > 0 ? char.ToLower(userInput[userInput.Length - 1]) : '\0';
+            char lastCharTyped;
+
+            if (userInput.Length > 0)
+            {
+                lastCharTyped = char.ToLower(userInput[userInput.Length - 1]);
+            }
+            else
+            {
+                lastCharTyped = '\0';
+            }
 
             foreach (Control control in virtualKeyboardPanelVisual.Controls)
             {
