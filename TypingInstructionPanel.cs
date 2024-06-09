@@ -114,7 +114,7 @@ namespace _7typingAPP
 
         public void StartTypingTestsMode()
         {
-            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тесты. Каждый тест имеет определенное время и сложность, по окончании которого пользователь получает оценку своих навыков. Это помогает объективно оценить свои возможности и прогресс в обучении, а также выявить слабые стороны, требующие доработки.");
+            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода несвязанные предложения. Каждое упражнение имеет определенное время и сложность, по окончании которого пользователь получает оценку своих навыков.");
             string[] TextList = File.ReadAllLines("Texts/Typing Tests.txt");
             List<string> practiceTexts = TextList.ToList();
             typingPracticePanelVisual.selectText(practiceTexts);
