@@ -183,7 +183,7 @@ namespace _7typingAPP
                         char keyChar = char.ToLower(button.Text[0]);
                         if (keyChar == firstCharToType)
                         {
-                            button.BackColor = Color.Aqua; // Подсвечиваем желтым первый символ
+                            button.BackColor = Color.Aqua; // Подсвечиваем первый символ
                         }
                         else
                         {
