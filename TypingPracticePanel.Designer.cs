@@ -1,6 +1,6 @@
 ﻿namespace _7typingAPP
 {
-    partial class TypingPracticePanel
+    partial class TypingPracticePanel_visual
     {
         /// <summary>
         /// Required designer variable.

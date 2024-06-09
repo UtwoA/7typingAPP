@@ -1,6 +1,6 @@
 ﻿namespace _7typingAPP
 {
-    partial class StatisticsPanel
+    partial class StatisticsPanel_visual
     {
         /// <summary>
         /// Required designer variable.

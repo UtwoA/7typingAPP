@@ -1,4 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace _7typingAPP
@@ -53,6 +57,82 @@ namespace _7typingAPP
             this.Controls.Add(this.instructionPictureBox);
 
 
+        }
+    }
+    public class Starter
+    {
+        private Panel modeSelectionPanel;
+        private Panel typingInstructionPanel;
+        private Label instructionLabel;
+        private PictureBox instructionPictureBox;
+        private TypingPracticePanel_visual typingPracticePanelVisual;
+        private StatisticsPanel_back statisticsPanelBack;
+
+        public Starter(Panel modeSelectionPanel, Panel typingInstructionPanel, Label instructionLabel, PictureBox instructionPictureBox, TypingPracticePanel_visual typingPracticePanelVisual, StatisticsPanel_back statisticsPanelBack)
+        {
+            this.modeSelectionPanel = modeSelectionPanel;
+            this.typingInstructionPanel = typingInstructionPanel;
+            this.instructionLabel = instructionLabel;
+            this.instructionPictureBox = instructionPictureBox;
+            this.typingPracticePanelVisual = typingPracticePanelVisual;
+            this.statisticsPanelBack = statisticsPanelBack;
+        }
+
+        public void StartNumPadMode()
+        {
+            StartTypingPractice("NumPad Mode\r\nВ этом режиме пользователю будут представлены для ввода только цифры. Это идеальный выбор для тех, кто хочет улучшить свои навыки ввода чисел на цифровой клавиатуре. Этот режим поможет повысить точность и скорость работы с цифрами, что полезно для выполнения бухгалтерских задач, работы с таблицами и других действий, требующих ввода чисел.");
+            string[] TextList = File.ReadAllLines("Texts/NumPad.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanelVisual.selectText(practiceTexts);
+            statisticsPanelBack.IncrementModeCount("NumPad Mode");
+        }
+        public void StartTouchTypingMode()
+        {
+            StartTypingPractice("Touch Typing\r\nВ этом режиме пользователю будут представлены для ввода комбинации букв, не имеющих смысла. Основная цель данного режима — развить навыки слепой печати и улучшить координацию пальцев. Ввод бессмысленных буквенных комбинаций помогает пользователю сосредоточиться на механике печати, не отвлекаясь на смысл текста.");
+            string[] TextList = File.ReadAllLines("Texts/Touch Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanelVisual.selectText(practiceTexts);
+            statisticsPanelBack.IncrementModeCount("Touch Typing");
+        }
+        public void StartBlindTypingMode()
+        {
+            StartTypingPractice("Blind Typing\r\nВ этом режиме пользователю будут представлены для ввода осмысленный текст. Это может быть статья, рассказ или отрывок из книги. Цель этого режима — улучшить навыки слепой печати осмысленного текста, что помогает развивать память пальцев и увеличивает общую скорость печати, а также улучшает навыки восприятия и ввода текста.");
+            string[] TextList = File.ReadAllLines("Texts/Blind Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanelVisual.selectText(practiceTexts);
+            statisticsPanelBack.IncrementModeCount("Blind Typing");
+        }
+
+        public void StartFastTypingMode()
+        {
+            StartTypingPractice("Fast Typing\r\nВ этом режиме пользователю будут представлены для ввода усложненный осмысленный текст. Тексты могут содержать сложные слова, знаки препинания и цифры. Цель данного режима — максимально увеличить скорость nпечати при сохранении точности. Этот режим идеален для тех, кто хочет продвинуть свои навыки на новый уровень и научиться быстро и точно печатать сложные тексты.");
+            string[] TextList = File.ReadAllLines("Texts/Fast Typing.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanelVisual.selectText(practiceTexts);
+            statisticsPanelBack.IncrementModeCount("Fast Typing");
+        }
+
+        public void StartTypingTestsMode()
+        {
+            StartTypingPractice("Typing Tests\r\nВ этом режиме пользователю будут представлены для ввода тесты. Каждый тест имеет определенное время и сложность, по окончании которого пользователь получает оценку своих навыков. Это помогает объективно оценить свои возможности и прогресс в обучении, а также выявить слабые стороны, требующие доработки.");
+            string[] TextList = File.ReadAllLines("Texts/Typing Tests.txt");
+            List<string> practiceTexts = TextList.ToList();
+            typingPracticePanelVisual.selectText(practiceTexts);
+            statisticsPanelBack.IncrementModeCount("Typing Tests");
+        }
+
+        public void StartFreeMode()
+        {
+            StartTypingPractice("Free Mode\r\nВ этом режиме пользователь может свободно печатать любой текст.");
+            typingPracticePanelVisual.selectText(new List<string> { "Набирайте что угодно!                                                                                                                                                                                                                                                                                                                                                                                         " });
+            statisticsPanelBack.IncrementModeCount("Free Mode");
+        }
+        private void StartTypingPractice(string instructions)
+        {
+            this.modeSelectionPanel.Visible = false;
+            this.typingInstructionPanel.Visible = true;
+            instructionLabel.Text = instructions;
+            instructionPictureBox.Image = Image.FromFile("picture.jpg");
         }
     }
 }

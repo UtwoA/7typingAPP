@@ -4,31 +4,33 @@ using System.Windows.Forms;
 
 namespace _7typingAPP
 {
-    public partial class VirtualKeyboardPanel : Panel
+    public partial class VirtualKeyboardPanel_visual : Panel
     {
         private Dictionary<char, Button> keyboardButtons = new Dictionary<char, Button>();
         private Dictionary<char, Color> keysColors = new Dictionary<char, Color>();
-        public VirtualKeyboardPanel()
+
+        public VirtualKeyboardPanel_visual()
         {
-            VirtualKeyboardPanelInitializeComponent();
+            InitializeComponent();
         }
-        private void VirtualKeyboardPanelInitializeComponent()
+
+        private void InitializeComponent()
         {
             CreateVirtualKeyboard();
         }
+
         public void CreateVirtualKeyboard()
         {
             this.ClientSize = new Size(600, 450);
             this.Location = new Point(10, 200);
             this.SuspendLayout();
 
-
             string[] keyboardLayout = {
-            "Ё1234567890-=",
-            "ЙЦУКЕНГШЩЗХЪ",
-            "ФЫВАПРОЛДЖЭ",
-            "ЯЧСМИТЬБЮ."
-             };
+                "Ё1234567890-=",
+                "ЙЦУКЕНГШЩЗХЪ",
+                "ФЫВАПРОЛДЖЭ",
+                "ЯЧСМИТЬБЮ."
+            };
 
             int keySize = 40;
             int spacingX = 2;
@@ -62,7 +64,7 @@ namespace _7typingAPP
                     }
                     keyButton.Location = new Point(x, y);
 
-                    keyButton.BackColor = GetKeyColor(keyButton.Text);
+                    keyButton.BackColor = VirtualKeyboardPanel_back.GetKeyColor(keyButton.Text);
                     keyboardButtons[keyboardLayout[row][col]] = keyButton;
                     keysColors[keyboardLayout[row][col]] = keyButton.BackColor;
 
@@ -77,7 +79,10 @@ namespace _7typingAPP
 
             this.Controls.Add(spaceButton);
         }
-        public Color GetKeyColor(string key)
+    }
+    public class VirtualKeyboardPanel_back
+    {
+        public static Color GetKeyColor(string key)
         {
             if ("Ё1ЙФЯ".Contains(key)) return Color.FromArgb(224, 175, 142);
             if ("2ЦЫЧ".Contains(key)) return Color.FromArgb(155, 188, 219);

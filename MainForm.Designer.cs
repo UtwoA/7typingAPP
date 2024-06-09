@@ -32,22 +32,28 @@ namespace _7typingAPP
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.statisticsPanel = new _7typingAPP.StatisticsPanel();
-            this.typingInstructionPanel = new _7typingAPP.TypingInstructionPanel();
-            this.typingPracticePanel = new _7typingAPP.TypingPracticePanel();
-            this.virtualKeyboardPanel = new _7typingAPP.VirtualKeyboardPanel();
+            this.statisticsPanelVisual = new _7typingAPP.StatisticsPanel_visual();
+            this.statisticsPanelBack = new _7typingAPP.StatisticsPanel_back();
+            this.virtualKeyboardPanelVisual = new _7typingAPP.VirtualKeyboardPanel_visual();
+            this.virtualKeyboardPanelBack = new _7typingAPP.VirtualKeyboardPanel_back();
             this.modeSelectionPanel = new _7typingAPP.ModeSelectionPanel();
             this.mainPanel = new _7typingAPP.MainPanel();
-            this.typingPracticePanel.SuspendLayout();
+            this.typingInstructionPanel = new _7typingAPP.TypingInstructionPanel();
+            this.typingPracticePanelVisual = new TypingPracticePanel_visual();
+            this.typingPracticePanelBack = new TypingPracticePanel_back(this.typingPracticePanelVisual, this.virtualKeyboardPanelVisual, this.virtualKeyboardPanelBack, this.stopwatch);
+            this.starter = new Starter(this.modeSelectionPanel, this.typingInstructionPanel, this.typingInstructionPanel.instructionLabel, this.typingInstructionPanel.instructionPictureBox, this.typingPracticePanelVisual, this.statisticsPanelBack);
+
             this.SuspendLayout();
+            this.typingPracticePanelVisual.SuspendLayout();
+            this.virtualKeyboardPanelVisual.SuspendLayout();
             // 
             // statisticsPanel
             // 
-            this.statisticsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.statisticsPanel.Location = new System.Drawing.Point(0, 0);
-            this.statisticsPanel.Name = "statisticsPanel";
-            this.statisticsPanel.Size = new System.Drawing.Size(600, 450);
-            this.statisticsPanel.TabIndex = 5;
+            this.statisticsPanelVisual.BackColor = System.Drawing.Color.Transparent;
+            this.statisticsPanelVisual.Location = new System.Drawing.Point(0, 0);
+            this.statisticsPanelVisual.Name = "statisticsPanel";
+            this.statisticsPanelVisual.Size = new System.Drawing.Size(600, 450);
+            this.statisticsPanelVisual.TabIndex = 5;
             // 
             // typingInstructionPanel
             // 
@@ -60,20 +66,21 @@ namespace _7typingAPP
             // 
             // typingPracticePanel
             // 
-            this.typingPracticePanel.BackColor = System.Drawing.Color.Transparent;
-            this.typingPracticePanel.Controls.Add(this.virtualKeyboardPanel);
-            this.typingPracticePanel.Location = new System.Drawing.Point(0, 0);
-            this.typingPracticePanel.Name = "typingPracticePanel";
-            this.typingPracticePanel.Size = new System.Drawing.Size(600, 200);
-            this.typingPracticePanel.TabIndex = 1;
+            this.typingPracticePanelVisual.BackColor = System.Drawing.Color.Transparent;
+            this.typingPracticePanelVisual.Controls.Add(this.virtualKeyboardPanelVisual);
+            this.typingPracticePanelVisual.Location = new System.Drawing.Point(0, 0);
+            this.typingPracticePanelVisual.Name = "typingPracticePanel";
+            this.typingPracticePanelVisual.Size = new System.Drawing.Size(600, 200);
+            this.typingPracticePanelVisual.TabIndex = 1;
             // 
             // virtualKeyboardPanel
             // 
-            this.virtualKeyboardPanel.BackColor = System.Drawing.Color.Transparent;
-            this.virtualKeyboardPanel.Location = new System.Drawing.Point(3, 203);
-            this.virtualKeyboardPanel.Name = "virtualKeyboardPanel";
-            this.virtualKeyboardPanel.Size = new System.Drawing.Size(600, 450);
-            this.virtualKeyboardPanel.TabIndex = 0;
+            this.virtualKeyboardPanelVisual.BackColor = System.Drawing.Color.Transparent;
+            this.virtualKeyboardPanelVisual.Location = new System.Drawing.Point(3, 203);
+            this.virtualKeyboardPanelVisual.Name = "virtualKeyboardPanel";
+            this.virtualKeyboardPanelVisual.Size = new System.Drawing.Size(600, 450);
+            this.virtualKeyboardPanelVisual.TabIndex = 0;
+            this.ResumeLayout(false);
             // 
             // modeSelectionPanel
             // 
@@ -95,18 +102,22 @@ namespace _7typingAPP
             // 
             this.BackgroundImage = global::_7typingAPP.Properties.Resources._18bf71_271830_1920_1080__1_;
             this.ClientSize = new System.Drawing.Size(600, 450);
-            this.Controls.Add(this.statisticsPanel);
+            this.Controls.Add(this.statisticsPanelVisual);
             this.Controls.Add(this.typingInstructionPanel);
-            this.Controls.Add(this.typingPracticePanel);
+            this.Controls.Add(this.virtualKeyboardPanelVisual);
+            this.Controls.Add(this.typingPracticePanelVisual);
             this.Controls.Add(this.modeSelectionPanel);
             this.Controls.Add(this.mainPanel);
+            // Добавление виртуальной клавиатуры и панели набора текста в форму
+            this.Controls.Add(this.virtualKeyboardPanelVisual);
+            this.Controls.Add(this.typingPracticePanelVisual);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "7 Typing App";
-            this.typingPracticePanel.ResumeLayout(false);
-            this.typingPracticePanel.PerformLayout();
+            this.typingPracticePanelVisual.ResumeLayout(false);
+            this.typingPracticePanelVisual.PerformLayout();
             this.ResumeLayout(false);
 
         }
